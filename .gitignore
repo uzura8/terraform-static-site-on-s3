@@ -1,0 +1,44 @@
+# OS file
+*~
+*.bak
+.DS_Store
+Thumbs.db
+
+# IDE user config
+.vscode/
+.idea/
+.vs/
+.buildpath
+.project
+.settings
+*.tmproj
+desktop.ini
+nbproject/
+tags
+
+# npm
+node_modules/
+package-lock.json
+.env
+.yarn
+
+# Logs
+yarn-error.log
+npm-debug.log
+lerna-debug.log
+
+# Istanbul coverage
+coverage/
+
+# cypress
+cypress/screenshots
+cypress/videos
+
+.vercel
+.now
+
+# public
+/public
+
+# Docs
+/README.pdf

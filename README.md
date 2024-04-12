@@ -43,13 +43,13 @@ export AWS_REGION="ap-northeast-1"
 Command Example to init
 
 ```bash
-terraform init -backend-config="bucket=your-deployment" -backend-config="key=terraform/your-project/terraform.tfstate" -backend-config="region=ap-northeast-1" -backend-config="profile=your-aws-profile-name"
+terraform init -backend-config="bucket=your-deployment" -backend-config="key=terraform/your-project/terraform.tfstate" -backend-config="region=ap-northeast-1"
 ```
 
 #### 4. Execute terraform apply
 
 ```bash
-terraform apply -auto-approve -var-file=./terraform.tfvars
+terraform apply -var-file=./terraform.tfvars
 ```
 
 ## Setup GitHub Actions for deploying static site

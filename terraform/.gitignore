@@ -3,6 +3,7 @@
 /.terraform.lock.hcl
 /.terraform.tfstate.lock.info
 /terraform.tfvars
+/errored.tfstate
 /terraform.tfstate*
 /tmp/*
 /var/*

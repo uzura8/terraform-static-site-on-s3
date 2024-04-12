@@ -4,6 +4,17 @@ variable "region_acm" {}
 variable "route53_zone_id" {}
 variable "domain_static_site" {}
 
+terraform {
+  backend "s3" {
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.74.2"
+    }
+  }
+}
+
 provider "aws" {
   region = var.region_site
   alias  = "site"
@@ -99,6 +110,7 @@ data "aws_cloudfront_cache_policy" "managed_caching_disabled" {
 ## Distribution
 resource "aws_cloudfront_distribution" "static_site" {
   origin {
+    #domain_name = aws_s3_bucket.static_site.bucket_regional_domain_name
     domain_name = "${local.bucket.static_site}.s3.${var.region_site}.amazonaws.com"
     origin_id   = "S3-${local.fqdn.static_site}"
     s3_origin_config {
@@ -239,6 +251,21 @@ resource "aws_s3_bucket" "static_site" {
   }
 }
 
+#resource "aws_s3_bucket_website_configuration" "static_site_config" {
+#  bucket = aws_s3_bucket.static_site.id
+#
+#  index_document {
+#    suffix = "index.html"
+#  }
+#  error_document {
+#    key = "error.html"
+#  }
+#}
+
+#resource "aws_s3_bucket_acl" "static_site_acl" {
+#  bucket = aws_s3_bucket.static_site.id
+#  acl    = "private"
+#}
 
 ## S3 Public Access Block
 ## Accept to access from All
