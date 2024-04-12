@@ -10,15 +10,15 @@ Create S3 Bucket named "your-terraform-config-bucket"
 
 You need below
 
-- aws-cli >= 1.27.X
-- Terraform >= 1.4.6
+- aws-cli >= 1.29.X
+- Terraform >= 1.7.2
 
 ##### Example Installation Terraform by tfenv on mac
 
 ```bash
 brew install tfenv
-tfenv install 1.4.6
-tfenv use 1.4.6
+tfenv install 1.7.2
+tfenv use 1.7.2
 ```
 
 #### 1. Edit Terraform config file
@@ -29,15 +29,6 @@ Copy sample file and edit variables for your env
 cd (project_root_dir)
 cp terraform.tfvars.sample terraform.tfvars
 vi terraform.tfvars
-```
-
-```terraform
-prj_prefix = "your-porject-name"
-region_site = "ap-northeast-1"
-region_acm = "us-east-1"
-route53_zone_id = "Set your route53 zone id"
-domain_static_site_prd = "your-domain-static-site.example.com"
-domain_static_site_dev = "your-domain-static-site-dev.example.com"
 ```
 
 #### 2. Set AWS profile name to environment variable
@@ -65,6 +56,8 @@ terraform apply -auto-approve -var-file=./terraform.tfvars
 
 ### Set enviroment variables
 
+If use Github Actions, you need to set below environment variables
+
 - Access to https://github.com/{your-account}/{repository-name}/settings/secrets/actions
 - Push "**New repository secret**" button
 - Add Below
@@ -76,9 +69,5 @@ terraform apply -auto-approve -var-file=./terraform.tfvars
     - **CLOUDFRONT_DISTRIBUTION** : your cloudfront distribution created by terraform for production
     - **S3_CONFIG_BUCKET**: **"your-serverles-configs/your-project-name/frontend/prd"** for production
     - **S3_RESOURCE_BUCKET**: **"your-domain-static.example.com"** for production
-  - For Develop
-    - **CLOUDFRONT_DISTRIBUTION_DEV** : your cloudfront distribution created by terraform for develop
-    - **S3_CONFIG_BUCKET_DEV**: **"your-serverles-configs/your-project-name/frontend/dev"** for develop
-    - **S3_RESOURCE_BUCKET_DEV**: **"your-domain-static-dev.example.com"** for develop
 
 #### Deploy continually on pushed to git
