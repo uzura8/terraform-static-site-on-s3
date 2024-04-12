@@ -52,22 +52,3 @@ terraform init -backend-config="bucket=your-deployment" -backend-config="key=ter
 terraform apply -var-file=./terraform.tfvars
 ```
 
-## Setup GitHub Actions for deploying static site
-
-### Set enviroment variables
-
-If use Github Actions, you need to set below environment variables
-
-- Access to https://github.com/{your-account}/{repository-name}/settings/secrets/actions
-- Push "**New repository secret**" button
-- Add Below
-  - **AWS_ACCESS_KEY_ID** : your-aws-access_key
-  - **AWS_SECRET_ACCESS_KEY** : your-aws-secret_key
-- Push "Variable" tab
-- Push "**New repository valiable**" button
-  - For Production
-    - **CLOUDFRONT_DISTRIBUTION** : your cloudfront distribution created by terraform for production
-    - **S3_CONFIG_BUCKET**: **"your-serverles-configs/your-project-name/frontend/prd"** for production
-    - **S3_RESOURCE_BUCKET**: **"your-domain-static.example.com"** for production
-
-#### Deploy continually on pushed to git
