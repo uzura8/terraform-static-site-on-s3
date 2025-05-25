@@ -1,9 +1,30 @@
-# Terraform
+*~
+*.bak
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+nbproject/
+tags
+
+# hidden files created by Windows
+Thumbs.db
+desktop.ini
+
 /.terraform
-/.terraform.lock.hcl
 /.terraform.tfstate.lock.info
-/terraform.tfvars
-/errored.tfstate
+/.terraform.lock.hcl
 /terraform.tfstate*
-/tmp/*
+/errored.tfstate*
+/terraform.json*
+/terraform.tfvars
 /var/*
+/bin/setup.conf
+/functions/src/*/configs/config.js
+/functions/dist/*
+/functions/package-lock.json
+/functions/node_modules
+

@@ -2,26 +2,26 @@
 
 Deploy AWS Resources for Static Site by Terraform
 
-#### Create AWS S3 Bucket for terraform state and frontend config
+## Create AWS S3 Bucket for terraform state and frontend config
 
 Create S3 Bucket named "your-terraform-config-bucket"
 
-#### Preparation
+## Preparation
 
 You need below
 
-- aws-cli >= 1.29.X
-- Terraform >= 1.7.2
+- aws-cli == 2.27.X
+- Terraform == 1.11.3
 
-##### Example Installation Terraform by tfenv on mac
+### Example Installation Terraform by tfenv on mac
 
 ```bash
 brew install tfenv
-tfenv install 1.7.2
-tfenv use 1.7.2
+tfenv install 1.11.3
+tfenv use 1.11.3
 ```
 
-#### 1. Edit Terraform config file
+#### Edit Terraform config file
 
 Copy sample file and edit variables for your env
 
@@ -29,6 +29,25 @@ Copy sample file and edit variables for your env
 cd (project_root_dir)
 cp terraform.tfvars.sample terraform.tfvars
 vi terraform.tfvars
+```
+
+#### Setup Lambda@Edge function (Optional)
+
+If you want to use Lambda@Edge function, you need to set up the function.
+
+##### Copy and Edit Lambda@Edge config file
+
+Copy sample file and edit variables for your Lambda@Edge env
+
+```bash
+cp functions/src/viewer_request/configs/config.js.sample  functions/src/viewer_request/configs/config.js
+vi functions/src/viewer_request/configs/config.js
+```
+
+##### Zip Lambda@Edge function
+
+```bash
+sh bin/package_lambda_edge_function.sh
 ```
 
 #### 2. Set AWS profile name to environment variable
@@ -51,4 +70,3 @@ terraform init -backend-config="bucket=your-deployment" -backend-config="key=ter
 ```bash
 terraform apply -var-file=./terraform.tfvars
 ```
-

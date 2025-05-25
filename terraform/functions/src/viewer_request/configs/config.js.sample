@@ -1,0 +1,17 @@
+module.exports = {
+  allowedIPs: [],
+  basicAuth: null,
+  // basicAuth: {
+  //   requiredPaths: ["/"],
+  //   account: {
+  //     id: "your-user-id",
+  //     password: "your-password",
+  //   },
+  // },
+  redirect: {
+    isEnabled: false,
+    rulesUrl: 'https://pscms-v2-media-dev.palr.link/posts/hoge/redirect.json', // for remote
+    jsonKey: 'bodyJson', // key name of the rules in the JSON
+    cacheTtl: 3 * 60 * 1000,  // 3min
+  },
+};

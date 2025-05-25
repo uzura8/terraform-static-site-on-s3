@@ -1,6 +1,8 @@
-prj_prefix = "your-porject-name"
-region_site = "ap-northeast-1"
-region_acm = "us-east-1"
+prj_prefix = "your-project"
+region_site     = "ap-northeast-1"
+region_acm      = "us-east-1"
+region_lambda_edge = "us-east-1"
 route53_zone_id = "Set your route53 zone id"
-domain_static_site = "your-domain-static-site.example.com"
-
+domain_static_site = "your-domain.example.com"
+s3_static_site_force_destroy = true
+enable_edge_lambda = false
