@@ -42,3 +42,17 @@ cypress/videos
 
 # Docs
 /README.pdf
+
+/.terraform
+/.terraform.tfstate.lock.info
+/.terraform.lock.hcl
+/terraform.tfstate*
+/errored.tfstate*
+/terraform.json*
+/terraform.tfvars
+/var/*
+/bin/setup.conf
+/functions/src/*/configs/config.js
+/functions/dist/*
+/functions/package-lock.json
+/functions/node_modules

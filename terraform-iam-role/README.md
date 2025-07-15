@@ -141,13 +141,13 @@ brew install jameswoolfenden/tap/pike
 Create Terraform file to create IAM policy
 
 ```bash
-cd (project_root_dir)/terraform
-pike scan -d . -i -e > ../terraform-iam-role/main.tf
+cd (project_root_dir)
+pike scan -d . -i -e > ./terraform-iam-role/main.tf
 ```
 
 Edit generated file
 
 ```bash
-cd ../terraform-iam-role
+cd ./terraform-iam-role
 vi main.tf
 ```

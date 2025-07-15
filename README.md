@@ -11,14 +11,14 @@ Create S3 Bucket named "your-terraform-config-bucket"
 You need below
 
 - aws-cli == 2.27.X
-- Terraform == 1.11.3
+- Terraform == 1.12.1
 
 ### Example Installation Terraform by tfenv on mac
 
 ```bash
 brew install tfenv
-tfenv install 1.11.3
-tfenv use 1.11.3
+tfenv install 1.12.1
+tfenv use 1.12.1
 ```
 
 #### Edit Terraform config file
