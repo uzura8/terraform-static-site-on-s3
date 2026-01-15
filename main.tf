@@ -1,7 +1,7 @@
 variable "prj_prefix" {}
 variable "region_site" {}
-variable "region_lambda_edge" {}
 variable "region_acm" {}
+variable "region_lambda_edge" {}
 variable "route53_zone_id" {}
 variable "domain_static_site" {}
 variable "s3_static_site_force_destroy" {
@@ -21,25 +21,25 @@ provider "aws" {
 }
 
 provider "aws" {
-  region = var.region_lambda_edge
-  alias  = "lambda_edge"
-}
-
-provider "aws" {
   region = var.region_acm
   alias  = "acm"
 }
 
-terraform {
-  backend "s3" {
-  }
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "= 5.94.1"
-    }
-  }
+provider "aws" {
+  region = var.region_lambda_edge
+  alias  = "lambda_edge"
 }
+
+#terraform {
+#  backend "s3" {
+#  }
+#  required_providers {
+#    aws = {
+#      source  = "hashicorp/aws"
+#      version = "= 5.94.1"
+#    }
+#  }
+#}
 
 locals {
   fqdn = {
@@ -221,15 +221,15 @@ resource "aws_cloudfront_distribution" "static_site" {
   custom_error_response {
     #error_caching_min_ttl = 360
     error_code         = 404
-    response_code      = 200
-    response_page_path = "/index.html"
+    response_code      = 404
+    response_page_path = "/errors/404.html"
   }
 
   custom_error_response {
     #error_caching_min_ttl = 360
     error_code         = 403
-    response_code      = 200
-    response_page_path = "/index.html"
+    response_code      = 404
+    response_page_path = "/errors/404.html"
   }
 
   default_cache_behavior {
