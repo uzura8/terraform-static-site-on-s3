@@ -6,3 +6,5 @@ route53_zone_id = "Set your route53 zone id"
 domain_static_site = "your-domain.example.com"
 s3_static_site_force_destroy = true
 enable_edge_lambda = false
+edge_lambda_runtime = "nodejs24.x"
+

@@ -14,17 +14,19 @@ variable "enable_edge_lambda" {
   type        = bool
   default     = false
 }
+variable "edge_lambda_runtime" {
+  description = "Runtime environment for Lambda@Edge function"
+  type        = string
+}
 
 provider "aws" {
   region = var.region_site
   alias  = "site"
 }
-
 provider "aws" {
   region = var.region_acm
   alias  = "acm"
 }
-
 provider "aws" {
   region = var.region_lambda_edge
   alias  = "lambda_edge"
@@ -154,7 +156,7 @@ resource "aws_lambda_function" "lambda_edge" {
   function_name = join("-", [var.prj_prefix, "lambda_edge", "viewer_request"])
   role          = aws_iam_role.lambda_edge_role.arn
   handler       = "index.handler"
-  runtime       = "nodejs22.x"
+  runtime       = var.edge_lambda_runtime
 
   # Put zip file to dist directory
   filename         = "${path.module}/functions/dist/lambda_edge_viewer_request.zip"
